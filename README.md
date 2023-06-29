@@ -1,7 +1,7 @@
 # redis-filememcache
 Redis and File cache for storing functions indexed by datetime
    
-   cache = FileMemCache(namespace="pycache1",filecache=r'z:\cache' )
+    cache = FileMemCache(namespace="pycache1",filecache=r'z:\cache' )
 
     @cache.cache_it()
     def test(dateDt, a,b):
