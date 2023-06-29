@@ -1,5 +1,5 @@
 # Redis-Filemem-Cache
-Redis and File cache for storing functions with datetime as one of the params
+Redis and File cache for storing functions tagged by datetime
 
 ## Features
 
