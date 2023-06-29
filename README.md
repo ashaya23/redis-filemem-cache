@@ -1,4 +1,4 @@
-# redis-filememcache
+# redis-filemem-cache
 Redis and File cache for storing functions indexed by datetime
    
     cache = FileMemCache(namespace="pycache1",filecache=r'z:\cache' )
