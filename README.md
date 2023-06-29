@@ -3,7 +3,7 @@ Redis and File cache for storing functions with datetime as one of the params
 
 ## Features
 
-- Caches data in both Redis for short-term and local files for persitentstorage 
+- Caches data in both Redis for short-term and local files for persitent storage 
 - Provides options to enable/disable file and memory caching independently.
 - This project includes a set of atomic read and write functions that ensure data integrity and reliability when reading from and writing to files.
 - Ability to list keys stored both in file and memory cache
