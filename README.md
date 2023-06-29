@@ -7,13 +7,13 @@ Redis and File cache for storing functions indexed by datetime
     def test(dateDt, a,b):
         return a+b
 
-
-    cache.clear(func='test*', memory=True,file=False)
+    test(datetime.date(2000,1,1), 10, 20)
+    
     cache.list_memory()
     cache.list_files()
 
 
-    test(datetime.date(2000,1,1), 10, 20)
+    
         
         
     cache.list_memory()
