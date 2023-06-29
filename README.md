@@ -3,9 +3,9 @@ Redis and File cache for storing functions with datetime as one of the params
    
    
    
-   import datetime as dt
+    import datetime as dt
    
-   cache = FileMemCache(namespace="pycache1",filecache=r'z:\cache' )
+    cache = FileMemCache(namespace="pycache1",filecache=r'z:\cache' )
 
     @cache.cache_it()
     def test(dateDt, a,b):
