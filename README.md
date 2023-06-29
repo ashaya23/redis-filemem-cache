@@ -28,9 +28,9 @@ To use this code, you need to have Python installed along with the required depe
     @cache.cache_it()
     def test(dateDt, a,b):
         if dateDt >= dt.date(2000,3,1):
-           return (a+b) * dateDt.month()
+           return (a+b) * dateDt.month
          else:
-            return a*b  * dateDt.year()
+            return a*b  * dateDt.year
 
 
     test(datetime.date(2000,1,1), 10, 20)
