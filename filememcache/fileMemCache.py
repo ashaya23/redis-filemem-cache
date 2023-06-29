@@ -4,7 +4,6 @@ Created on May 2, 2019
 @author: ashaya
 
 
-
    Redis and File cache for storing functions indexed by datetime
    
    cache = FileMemCache(namespace="pycache1",filecache=r'z:\cache' )
@@ -14,18 +13,11 @@ Created on May 2, 2019
         return a+b
 
 
-    cache.clear(func='test*', memory=True,file=False)
-    cache.list_memory()
-    cache.list_files()
+    start_date = datetime.date(2000,1,1)
 
 
-    start_date = dt.date(2000,1,1)
-
-    while start_date <= dt.date(2000,2,1):
-
-        test(start_date, 10, 20)
-        
-        
+    test(start_date, 10, 20)
+                
     cache.list_memory()
     cache.list_files()
 
