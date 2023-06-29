@@ -4,7 +4,8 @@ Created on May 2, 2019
 @author: ashaya
 
 
-   Redis and File cache for storing functions indexed by datetime
+   Redis and File cache for storing functions with datetime as one of the params
+   
    import datetime as dt
    
    cache = FileMemCache(namespace="pycache1",filecache=r'z:\cache' )
