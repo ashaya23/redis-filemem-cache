@@ -4,10 +4,13 @@ Created on May 2, 2019
 @author: ashaya
 
 
+
    Redis and File cache for storing functions with datetime as one of the params
-   
+
+
+
    import datetime as dt
-   
+
    cache = FileMemCache(namespace="pycache1",filecache=r'z:\cache' )
 
     @cache.cache_it()
@@ -20,13 +23,12 @@ Created on May 2, 2019
 
     test(datetime.date(2000,1,1), 10, 20)
     test(datetime.date(2005,1,1), 10, 20)
-                
+
     cache.list_memory()
     cache.list_files()
 
     The code is influenced by vivek narayan's  https://github.com/vivekn/redis-simple-cache
     and ohanetz's https://github.com/ohanetz/redis-simple-cache-3k
-
 
 """
 
@@ -233,9 +235,11 @@ class FileMemCache(object):
         check_sum = hashlib.md5(str(data).encode()).hexdigest()
         save_data = {'data' : data , 'check_sum' : check_sum}
 
+        pid = os.getpid()
+
         try:
             # Create a temporary file in the destination location
-            temp_file_path = file_path + '.tmp'
+            temp_file_path = file_path + f'{pid}.tmp'
 
             # Write the pickled object to the temporary file
             with open(temp_file_path, 'wb') as temp_file:
@@ -669,3 +673,61 @@ class FileMemCache(object):
         return decorator
 
 
+
+
+if __name__=="__main__":
+
+    import datetime as dt, time
+    from library.utils import date
+    from library.dataReader import getSF1
+
+    cache = FileMemCache(namespace="pycache1",filecache=r'z:\cache' )
+
+
+    @cache.cache_it()
+    def test(dateDt, a,b):
+        return a+b
+
+
+    @cache.cache_it()
+    def test1(dateDt, a, b):
+        return a * b
+
+
+    @cache.cache_it()
+    def test2(dateDt, atc, bch):
+        return atc / bch
+
+
+
+    cache.list_memory()
+    cache.list_files()
+    cache.clear(func='test*', memory=True,file=False)
+    cache.list_memory()
+    cache.list_files()
+
+
+    start_date = dt.date(2000,1,1)
+
+    while start_date <= dt.date(2000,2,1):
+
+        test(start_date, 10, 20)
+        test1(start_date, 10, 20)
+        test2(start_date, 10, 20)
+        start_date = date.tomorrow(start_date)
+        print(start_date)
+    
+    """
+
+    get_data = cache.cache_it()(getSF1.load)
+
+
+    dte = dt.date(2023,6,22)
+    start_time = time.time()
+    data = get_data(dte, measure='ffprofit')
+    print(f"Getting Data : {time.time() - start_time}")
+
+    start_time = time.time()
+    data = get_data(dte, measure='ffprofit')
+    print(f"Cached Data : {time.time() - start_time}")
+    """
